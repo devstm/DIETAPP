@@ -1,0 +1,29 @@
+{
+    "git.ignoreLimitWarning": true,
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "todo-tree.highlights.customHighlight": {
+      "TODO": {
+          "icon": "check",
+          "type": "line"
+      },
+      "FIXME": {
+          "foreground": "#000000",
+          "iconColour": "#ffff00", // yellow rbg = #ffff00
+          "gutterIcon": true
+      },
+      "DONE": {
+          "icon": "verified",
+          "foreground": "#00ff00",
+          "background": "#5f5f5f",
+          "opacity": 50,
+          "type": "line"
+      },
+},
+"cSpell.words": [
+    "nestjs"
+],
+"files.eol": "\n"
+}
