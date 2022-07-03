@@ -3,8 +3,8 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.sequelize.transaction(async (t) => {
-      return queryInterface.createTable(
-        'Consultations',
+      await queryInterface.createTable(
+        'Votes',
         {
           id: {
             allowNull: false,
@@ -12,33 +12,28 @@ module.exports = {
             primaryKey: true,
             type: Sequelize.INTEGER,
           },
-          title: {
+          answer_id: {
             allowNull: false,
-            type: Sequelize.STRING,
-          },
-          description: {
-            allowNull: false,
-            type: Sequelize.STRING,
+            type: Sequelize.INTEGER,
+            references: {
+              model: 'Answers',
+              key: 'id',
+            },
           },
           user_id: {
             allowNull: false,
             type: Sequelize.INTEGER,
-            references: {
-              model: 'users',
-              key: 'id',
-            },
+          },
+          vote: {
+            allowNull: false,
+            type: Sequelize.ENUM('up', 'down'),
           },
           created_at: {
             allowNull: false,
             type: Sequelize.DATE,
-            defaultValue: Sequelize.fn('now'),
           },
           updated_at: {
             allowNull: false,
-            type: Sequelize.DATE,
-          },
-          deleted_at: {
-            allowNull: true,
             type: Sequelize.DATE,
           },
           created_by: {
@@ -50,10 +45,19 @@ module.exports = {
         },
         { transaction: t },
       );
+      await queryInterface.sequelize.query(
+        `ALTER TABLE Votes
+        ADD uniq_answer_id_user_id VARCHAR(255) AS (
+         CONCAT(
+          answer_id,'|',user_id, '|', ifnull(user_id, 0)
+         )
+       ) UNIQUE;`,
+        { transaction: t },
+      );
     });
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('consultation');
+    return queryInterface.dropTable('Votes');
   },
 };

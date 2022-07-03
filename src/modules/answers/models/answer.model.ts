@@ -14,7 +14,7 @@ import { User } from '../../../modules/user/model/users.model';
 
 const { STRING, INTEGER, BOOLEAN } = DataType;
 
-@Table
+@Table({ underscored: true })
 export class Answer extends Model {
   @Column(STRING)
   title: string;
@@ -27,6 +27,9 @@ export class Answer extends Model {
 
   @Column(BOOLEAN)
   isDraft: boolean;
+
+  @Column(BOOLEAN)
+  isVerified: boolean;
 
   @ForeignKey(() => User)
   @Column(INTEGER)

@@ -21,6 +21,7 @@ export class RolesGuard implements CanActivate {
     const token = request.headers.authorization;
     if (!token) return false;
     const { userId }: any = await verifyToken(token);
+    console.log(userId);
     if (userId) {
       const user = await User.findByPk(userId);
       request.user = user;

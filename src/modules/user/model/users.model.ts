@@ -13,7 +13,7 @@ import { Consultation } from '../../../modules/consultation/models/consultation.
 
 const { STRING, INTEGER } = DataType;
 
-@Table
+@Table({ underscored: true })
 export class User extends Model {
   @Column(STRING)
   username: string;

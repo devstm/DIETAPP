@@ -2,13 +2,14 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.addColumn('users', 'isDraft', {
+    return queryInterface.addColumn('answers', 'is_verified', {
       type: Sequelize.BOOLEAN,
+      allowNull: false,
       defaultValue: false,
     });
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.removeColumn('users ', 'isDraft');
+    return queryInterface.removeColumn('answers', 'is_verified');
   },
 };

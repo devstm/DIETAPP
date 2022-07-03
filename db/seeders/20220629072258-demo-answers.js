@@ -7,8 +7,8 @@ module.exports = {
       title: faker.company.companyName(),
       description: faker.lorem.paragraph(),
       recommendations: faker.lorem.paragraph(),
-      userId: Math.floor(Math.random() * (100 - 70 + 1)) + 70,
-      consultationId: Math.floor(Math.random() * (100 - 1 + 1)) + 1,
+      user_id: Math.floor(Math.random() * (100 - 70 + 1)) + 70,
+      consultation_id: Math.floor(Math.random() * (100 - 1 + 1)) + 1,
     }));
     return queryInterface.bulkInsert('answers', answers, {});
   },

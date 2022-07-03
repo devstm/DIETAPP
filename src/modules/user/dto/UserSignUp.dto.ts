@@ -1,11 +1,13 @@
 import {
   IsBoolean,
   IsEmail,
+  IsEnum,
   IsNotEmpty,
   IsString,
   Matches,
   MinLength,
 } from 'class-validator';
+import { Role } from 'src/common/enums';
 
 export class UserSignUpDTO {
   @IsEmail()
@@ -16,7 +18,6 @@ export class UserSignUpDTO {
   @IsString()
   firstName: string;
 
-  @IsNotEmpty()
   @IsString()
   middleName: string;
 
@@ -32,11 +33,11 @@ export class UserSignUpDTO {
   username: string;
 
   @IsNotEmpty()
-  @IsBoolean()
-  isAdmin: boolean;
+  @IsEnum(['consultant', 'user'])
+  role: string;
 
   @MinLength(8)
-  @Matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/, {
+  @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
     message: 'password too weak',
   })
   @IsNotEmpty()

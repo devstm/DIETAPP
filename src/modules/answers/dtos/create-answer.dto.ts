@@ -24,4 +24,8 @@ export class CreateAnswerDTO {
   @IsNotEmpty()
   @IsBoolean()
   isDraft: boolean;
+
+  @IsNotEmpty()
+  @IsBoolean()
+  isVerified: boolean;
 }

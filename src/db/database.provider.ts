@@ -5,6 +5,7 @@ import { Answer } from '../modules/answers/models/answer.model';
 import { Consultation } from '../modules/consultation/models/consultation.model';
 import { User } from '../modules/user/model/users.model';
 import { PROVIDERS, DATABASE_CONFIG } from '../common/constants';
+import { Vote } from 'src/modules/votes/models/votes.model';
 
 export const databaseProvider = [
   {
@@ -15,7 +16,7 @@ export const databaseProvider = [
         logging: false,
         dialect: 'mysql',
       });
-      sequelize.addModels([Consultation, User, Answer]);
+      sequelize.addModels([Consultation, User, Answer, Vote]);
       return sequelize;
     },
     inject: [ConfigService],

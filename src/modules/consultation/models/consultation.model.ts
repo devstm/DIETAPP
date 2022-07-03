@@ -15,7 +15,7 @@ import { User } from '../../../modules/user/model/users.model';
 
 const { STRING, JSON, INTEGER } = DataType;
 
-@Table
+@Table({ underscored: true })
 export class Consultation extends Model {
   @Column(JSON)
   title: object;
